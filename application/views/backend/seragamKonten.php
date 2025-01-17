@@ -1,185 +1,395 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title; ?></title>
-    <!-- Pastikan Anda memuat jQuery dan Bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-</head>
-<body>
+<div class="card card-primary card-tabs">
+<div class="card-header p-0 pt-1">
+		<ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+			<li class="nav-item">
+				<a class="nav-link active" id="custom-tabs-one-home-tab" data-toggle="pill" href="#custom-tabs-one-home" role="tab" aria-controls="custom-tabs-one-home" aria-selected="true">Jenis Seragam</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="custom-tabs-one-profile-tab" data-toggle="pill" href="#custom-tabs-one-profile" role="tab" aria-controls="custom-tabs-one-profile" aria-selected="false">Stok Seragam</a>
+			</li>
+		</ul>
+	</div>
+	<div class="card-body">
+		<div class="tab-content" id="custom-tabs-one-tabContent">
+      <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+          <div class="btn btn-primary btnTambahStokSeragam mb-1">
+            <i class="fas fa-plus"></i> Tambah
+          </div>
+          <div class="card">
 
-<div class="container mt-5">
-    <h2>Data Seragam</h2>
+                    <!-- Tabel Stok Seragam -->
+					<table id="tableStokSeragam" class="table table-striped table-bordered mt-2">
+						<thead>
+							<tr>
+								<th style="text-align: center;">No</th>
+								<th style="text-align: center;">Jenis Seragam</th>
+								<th style="text-align: center;">Ukuran</th>
+								<th style="text-align: center;">Stok</th>
+								<th style="text-align: center;">Aksi</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+			</div>
 
-    <!-- Navtabs untuk memisahkan bagian -->
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="dataJenisSeragamTab" data-toggle="tab" href="#dataJenisSeragam" role="tab" aria-controls="dataJenisSeragam" aria-selected="true">Data Jenis Seragam</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="dataStokSeragamTab" data-toggle="tab" href="#dataStokSeragam" role="tab" aria-controls="dataStokSeragam" aria-selected="false">Data Stok Seragam</a>
-        </li>
-    </ul>
 
-    <!-- Konten Tab -->
-    <div class="tab-content" id="myTabContent">
-        <!-- Tab Data Jenis Seragam -->
-        <div class="tab-pane fade show active" id="dataJenisSeragam" role="tabpanel" aria-labelledby="dataJenisSeragamTab">
-            <button class="btn btn-primary mb-3 mt-3" id="btnTambahJenisSeragam">Tambah Jenis Seragam</button>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Jenis Seragam</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody id="jenisSeragamTable">
-                    <!-- Data akan dimuat menggunakan AJAX -->
-                </tbody>
+			<div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+				<div class="btn btn-primary btnTambahJenisSeragam mb-1">
+					<i class="fas fa-plus"></i> Tambah
+				</div>
+				<div class="card">
+
+
+                    <!-- Tabel Jenis Seragam -->
+                    <table id="tableJenisSeragam" class="table table-striped table-bordered mt-2">
+              <thead>
+                <tr>
+                  <th style="text-align: center;">No</th>
+                  <th style="text-align: center;">Jenis Seragam</th>
+                  <th style="text-align: center;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
             </table>
+          </div>
         </div>
 
-        <!-- Tab Data Stok Seragam -->
-        <div class="tab-pane fade" id="dataStokSeragam" role="tabpanel" aria-labelledby="dataStokSeragamTab">
-            <!-- Isi Konten Data Stok Seragam -->
-            <h3>Data Stok Seragam</h3>
-            <p>Data terkait stok seragam akan ditampilkan di sini.</p>
-        </div>
+      </div>
     </div>
 </div>
 
-<!-- Modal untuk Menambah/Edit Jenis Seragam -->
-<div id="modalJenisSeragam" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Tambah/Edit Jenis Seragam</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <input type="hidden" id="jenis_seragam_id" />
-                <div class="form-group">
-                    <label for="jenis_seragam">Jenis Seragam</label>
-                    <input type="text" class="form-control" id="jenis_seragam" placeholder="Masukkan jenis seragam" />
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                <button type="button" class="btn btn-primary saveJenisSeragamBtn">Simpan</button>
-            </div>
-        </div>
-    </div>
+<!-- Modal Jenis Seragam -->
+<div class="modal" id="modalJenisSeragam" tabindex=" -1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Tambah Jenis Seragam</h5>
+
+				<button type="button" class="close " data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="form-user">
+					<form id="formJenisSeragam" action="#" method="post" enctype="multipart/form-data">
+						<input type="hidden" class="form-control" id="id" name="id" value="">
+
+						<div class="mb-1">
+							<label for="nama_jenis_seragam" class="form-label">Nama Jenis Seragam</label>
+							<input type="text" class="form-control" id="nama_jenis_seragam" name="nama_jenis_seragam" value="">
+							<div class="error-block"></div>
+						</div>
+
+					</form>
+
+					<div>
+
+					</div>
+
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary saveBtn" id="saveJenisSeragam">Simpan</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal" id="modalStokSeragam" tabindex=" -1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">Tambah Stok Seragam</h5>
+
+				<button type="button" class="close " data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="form-user">
+					<form id="formStokSeragam" action="#" method="post" enctype="multipart/form-data">
+						<input type="hidden" class="form-control" id="id" name="id" value="">
+
+						<div class="mb-1">
+							<label for="jenis_seragam_id" class="form-label">Nama Jenis Seragam</label>
+							<select class="form-control" id="jenis_seragam_id" name="jenis_seragam_id">
+								<option value="">- Pilih Jenis Seragam -</option>
+							</select>
+							<div class="error-block"></div>
+						</div>
+            				<div class="mb-1">
+							<label for="ukuran_seragam" class="form-label">Ukuran</label>
+							<select class="form-control" id="ukuran_seragam" name="ukuran_seragam">
+								<option value="">- Pilih Ukuran -</option>
+								<option value="S">S</option>
+								<option value="M">M</option>
+								<option value="L">L</option>
+								<option value="XL">XL</option>
+								<option value="XXL">XXL</option>
+								<option value="XXXL">XXXL</option>
+							</select>
+							<div class="error-block"></div>
+						</div>
+            				<div class="mb-1">
+							<label for="stok_seragam" class="form-label">Stok</label>
+							<input type="text" class="form-control" name="stok_seragam" id="stok_seragam">
+							<div class="error-block"></div>
+						</div>
+					</form>
+
+					<div>
+
+					</div>
+
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary saveBtn" id="saveStokSeragam">Simpan</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+			</div>
+		</div>
+	</div>
 </div>
 
 <script>
-    $(document).ready(function() {
-        // Memuat data jenis seragam
-        loadJenisSeragam();
+	$(document).ready(function() {
+		tabelJenisSeragam();
+		tabelStokSeragam();
+		$('#jenis_seragam_id').load('<?php echo base_url('seragam/getOptionJenisSeragam/'); ?>');
 
-        // Menambahkan jenis seragam baru
-        $('#btnTambahJenisSeragam').click(function() {
-            $('#jenis_seragam').val('');
-            $('#modalJenisSeragam').data('action', 'add');
-            $('#modalJenisSeragam').modal('show');
-        });
+	});
 
-        // Menyimpan atau mengedit jenis seragam
-        $('.saveJenisSeragamBtn').click(function() {
-            var action = $('#modalJenisSeragam').data('action');
-            var jenisSeragam = $('#jenis_seragam').val();
-            var jenisSeragamId = $('#jenis_seragam_id').val();
+	$('.btnTambahJenisSeragam').on('click', function() {
+		$('.btnTambahJenisSeragam').on('click', function() {
+    	resetFormJenisSeragam();
+			$('#modalJenisSeragam').modal('show');
+		});
 
-            if (jenisSeragam == "") {
-                alert("Jenis Seragam tidak boleh kosong!");
-                return;
-            }
+		function resetFormJenisSeragam() {
+			$('#id').val('');
+			$('#nama_jenis_seragam').val('');
+		}
 
-            var url, data;
+	});
 
-            if (action === 'add') {
-                url = 'data_seragam/saveJenisSeragam';
-                data = { jenis_seragam: jenisSeragam };
-            } else {
-                url = 'data_seragam/editJenisSeragam';
-                data = { id: jenisSeragamId, jenis_seragam: jenisSeragam };
-            }
+	function tabelJenisSeragam() {
+		let tabel = $('#tableJenisSeragam');
+		let tr = '';
+		$.ajax({
+			url: '<?php echo base_url('seragam/table_jenis_seragam'); ?>',
+			type: 'GET',
 
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: data,
-                success: function(response) {
-                    $('#modalJenisSeragam').modal('hide');
-                    loadJenisSeragam();
-                }
-            });
-        });
-    });
+			dataType: 'json',
+			success: function(response) {
+				if (response.status) {
+					tabel.find('tbody').html('');
+					let no = 1;
+					$.each(response.data, function(i, item) {
+						tr = $('<tr>');
 
-    // Memuat data jenis seragam ke dalam tabel
-    function loadJenisSeragam() {
-        $.ajax({
-            url: 'data_seragam/getAllJenisSeragam',
-            type: 'GET',
-            dataType: 'json',
-            success: function(response) {
-                var tableContent = '';
-                $.each(response, function(i, item) {
-                    tableContent += `
-                        <tr>
-                            <td>${item.id}</td>
-                            <td>${item.jenis_seragam}</td>
-                            <td>
-                                <button class="btn btn-warning btn-sm" onclick="editJenisSeragam(${item.id})">Edit</button>
-                                <button class="btn btn-danger btn-sm" onclick="deleteJenisSeragam(${item.id})">Hapus</button>
-                            </td>
-                        </tr>
-                    `;
-                });
-                $('#jenisSeragamTable').html(tableContent);
-            }
-        });
-    }
+						tr.append('<td>' + no++ + '</td>');
+						tr.append('<td>' + item.nama_jenis_seragam + '</td>');
 
-    // Mengedit jenis seragam
-    function editJenisSeragam(id) {
-        $.ajax({
-            url: 'data_seragam/getJenisSeragamById',
-            type: 'GET',
-            data: { id: id },
-            dataType: 'json',
-            success: function(response) {
-                if (response) {
-                    $('#jenis_seragam_id').val(response.id);
-                    $('#jenis_seragam').val(response.jenis_seragam);
-                    $('#modalJenisSeragam').data('action', 'edit');
-                    $('#modalJenisSeragam').modal('show');
-                }
-            }
-        });
-    }
+						tr.append('<td>	<button class="btn btn-primary" onclick="editJenisSeragam(' + item.id + ')">Edit</button> <button class="btn btn-danger" onclick="deleteJenisSeragam(' + item.id + ')">Delete</button></td>');
+						tabel.find('tbody').append(tr);
+					});
 
-    // Menghapus jenis seragam
-    function deleteJenisSeragam(id) {
-        if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
-            $.ajax({
-                url: 'data_seragam/deleteJenisSeragam',
-                type: 'POST',
-                data: { id: id },
-                success: function(response) {
-                    loadJenisSeragam();
-                }
-            });
-        }
-    }
+				} else {
+					tr = $('<tr>');
+					tabel.find('tbody').html('');
+					tr.append('<td colspan="4">' + response.message + '</td>');
+				}
+			}
+		});
+	}
+
+	$('#saveJenisSeragam').on('click', function() {
+		var id = $('#id').val();
+
+		let url = '<?php echo base_url('seragam/save_jenis_seragam'); ?>';
+		var formData = new FormData($('#formJenisSeragam')[0]);
+		$.ajax({
+			url: url,
+			type: 'POST',
+			data: formData,
+			processData: false,
+			contentType: false,
+			dataType: 'json',
+			success: function(response) {
+				if (response.status) {
+					alert(response.message);
+					$('#modalJenisSeragam').modal('hide');
+					tabelJenisSeragam();
+				} else {
+					alert(response.message);
+				}
+			}
+		})
+	});
+
+	function editJenisSeragam(id) {
+		$.ajax({
+			url: '<?php echo base_url('seragam/edit_jenis_seragam'); ?>',
+			type: 'post',
+			data: {
+				id: id,
+			},
+			dataType: 'json',
+			success: function(response) {
+				if (response.status) {
+					$('#id').val(response.data.id);
+					$('#nama_jenis_seragam').val(response.data.nama_jenis_seragam);
+					$('#modalJenisSeragam').modal('show');
+				} else {
+					alert(response.message);
+				}
+			}
+		});
+	}
+
+  function deleteJenisSeragam(id) {
+		$.ajax({
+			url: '<?php echo base_url('seragam/delete_jenis_seragam'); ?>',
+			type: 'POST',
+			data: {
+				id: id,
+			},
+			dataType: 'json',
+			success: function(response) {
+				if (response.status) {
+					alert(response.message);
+					tabelJenisSeragam();
+				} else {
+					alert(response.message);
+				}
+			}
+		})
+	}
+
+
+
+	$('.btnTambahStokSeragam').on('click', function() {
+		$('.btnTambahStokSeragam').on('click', function() {
+			resetFormStokSeragam();
+			$('#modalStokSeragam').modal('show');
+		});
+
+		function resetFormStokSeragam() {
+			$('#id').val('');
+			$('#jenis_seragam_id').val('');
+			$('#ukuran_seragam').val('');
+			$('#stok_seragam').val('');
+		}
+
+	});
+
+	function tabelStokSeragam() {
+		let tabel = $('#tableStokSeragam');
+		let tr = '';
+		$.ajax({
+			url: '<?php echo base_url('seragam/table_stok_seragam'); ?>',
+			type: 'GET',
+
+			dataType: 'json',
+			success: function(response) {
+				if (response.status) {
+					tabel.find('tbody').html('');
+					let no = 1;
+					$.each(response.data, function(i, item) {
+						tr = $('<tr>');
+
+						tr.append('<td>' + no++ + '</td>');
+						tr.append('<td>' + item.nama_jenis_seragam + '</td>');
+						tr.append('<td>' + item.ukuran_seragam + '</td>');
+						tr.append('<td>' + item.stok_seragam + '</td>');
+
+
+						tr.append('<td>	<button class="btn btn-primary" onclick="editStokSeragam(' + item.id + ')">Edit</button> <button class="btn btn-danger" onclick="deleteStokSeragam(' + item.id + ')">Delete</button></td>');
+						tabel.find('tbody').append(tr);
+					});
+
+				} else {
+					tr = $('<tr>');
+					tabel.find('tbody').html('');
+					tr.append('<td colspan="4">' + response.message + '</td>');
+				}
+			}
+		});
+	}
+	$('#saveStokSeragam').on('click', function() {
+		var id = $('#id').val();
+		var jenis_seragam_id = $('#jenis_seragam_id').val();
+		var ukuran_seragam = $('#ukuran_seragam').val();
+    var stok_seragam = $('#stok_seragam').val();
+		let url = '<?php echo base_url('seragam/save_stok_seragam'); ?>';
+
+		$.ajax({
+			url: url,
+			type: 'POST',
+			data: {
+				id: id,
+				jenis_seragam_id: jenis_seragam_id,
+        		ukuran_seragam: ukuran_seragam,
+				stok_seragam: stok_seragam
+			},
+			dataType: 'json',
+			success: function(response) {
+				if (response.status) {
+					alert(response.message);
+					$('#modalStokSeragam').modal('hide');
+					tabelStokSeragam();
+
+				} else {
+					alert(response.message);
+				}
+			}
+		})
+	});
+
+	function editStokSeragam(id) {
+		$.ajax({
+			url: '<?php echo base_url('seragam/edit_stok_seragam'); ?>',
+			type: 'post',
+			data: {
+				id: id,
+			},
+			dataType: 'json',
+			success: function(response) {
+				if (response.status) {
+					$('#id').val(response.data.id);
+					$('#jenis_seragam_id').val(response.data.jenis_seragam_id);
+					$('#ukuran_seragam').val(response.data.ukuran_seragam);
+          			$('#stok_seragam').val(response.data.stok_seragam);
+					$('#modalStokSeragam').modal('show');
+				} else {
+					alert(response.message);
+				}
+			}
+		});
+	}
+
+	function deleteStokSeragam(id) {
+		$.ajax({
+			url: '<?php echo base_url('seragam/delete_stok_seragam'); ?>',
+			type: 'POST',
+			data: {
+				id: id,
+			},
+			dataType: 'json',
+			success: function(response) {
+				if (response.status) {
+					alert(response.message);
+					tabelStokSeragam();
+				} else {
+					alert(response.message);
+				}
+			}
+		})
+	}
+
 </script>
-
-<!-- Tambahkan script untuk modal -->
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

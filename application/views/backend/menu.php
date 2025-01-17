@@ -41,7 +41,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="<?php echo base_url('Data_seragam') ?>" class="nav-link">
+                <a href="<?php echo base_url('Seragam') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Seragam</p>
                 </a>
